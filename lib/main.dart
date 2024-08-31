@@ -3,11 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/component/alert_contents_component.dart';
 import 'package:portfolio/theme.dart';
 import 'package:portfolio/util.dart';
+import 'dart:html' as html;
 
 import 'cubit/actions_cubit.dart';
 import 'home.dart';
 
 void main() {
+  final baseHref = html.window.location.pathname;
+  final baseElement = html.Element.tag('base');
+  baseElement.attributes['href'] = baseHref!;
+  html.document.head!.append(baseElement);
+
   runApp(
     MultiBlocProvider(
       providers: [
@@ -23,8 +29,8 @@ void main() {
 class MyPortfolioWeb extends StatelessWidget {
   const MyPortfolioWeb({super.key});
 
-  Icon _getAlertDialogIcon(String key){
-    switch(key){
+  Icon _getAlertDialogIcon(String key) {
+    switch (key) {
       case "mail":
         return Icon(Icons.mail_outline);
       case "phone":
