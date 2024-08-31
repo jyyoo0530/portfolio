@@ -32,16 +32,8 @@ jobs:
 
       # 4
       # https://github.com/marketplace/actions/github-pages-action
-      - name: Deploy to github pages
-        run: |
-          mkdir -p docs
-          cp -r build/web/* docs/
-
-      #5
-      - name: Commit and push changes
-        run: |
-          git config --global user.email "jyyoo0530@gmail.com"
-          git config --global user.name "jyyo0530"
-          git add docs/
-          git commit -m "Deploy to Github Pages"
-          git push origin master
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/web
