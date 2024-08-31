@@ -28,13 +28,20 @@ jobs:
 
       # 3
       - name: Build web
-        run: flutter build web --base-href "/${{ github.event.repository.name }}/"
+        run: flutter build web --release
 
       # 4
       # https://github.com/marketplace/actions/github-pages-action
       - name: Deploy to github pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.STATIC_DEPLOY_KEY }}
-          publish_dir: ./build/web
-          publish_branch: master
+        run: |
+          mkdir -p docs
+          cp -r build/web/* docs/
+
+      #5
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "jyyoo0530@gmail.com"
+          git config --global user.name "jyyo0530"
+          git add docs/
+          git commit -m "Deploy to Github Pages"
+          git push origin master
