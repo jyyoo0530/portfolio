@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:portfolio/portfolio/portfolio_component.dart';
+import 'package:portfolio/component/carousel.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ExpandableCarousel(
-      options: ExpandableCarouselOptions(
-        padEnds: false,
-        autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 10),
-        viewportFraction: 1.0,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            color: Colors.deepOrange,
+            width: double.infinity,
+            height: 700,
+            child: MyCarousel(height: 700),
+          ),
+          Container(
+            color: Colors.cyan,
+            width: double.infinity,
+            height: 700,
+            child: Text("Section2"),
+          ),
+          Container(
+            color: Colors.amber,
+            width: double.infinity,
+            height: 700,
+            child: Text("Section3"),
+          ),
+        ],
       ),
-      items: [1, 2, 3, 4, 5].map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return PortfolioComponent();
-          },
-        );
-      }).toList(),
     );
   }
 }

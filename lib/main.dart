@@ -27,7 +27,9 @@ void main() {
 }
 
 class MyPortfolioWeb extends StatelessWidget {
-  const MyPortfolioWeb({super.key});
+  String _selectedOption = "None";
+
+  MyPortfolioWeb({super.key});
 
   Icon _getAlertDialogIcon(String key) {
     switch (key) {
@@ -108,11 +110,22 @@ class MyPortfolioWeb extends StatelessWidget {
                 onPressed: () =>
                     context.read<ActionsCubit>().toggleActionsState("sns"),
               ),
-              IconButton(
-                icon: Icon(Icons.more_vert),
-                onPressed: () =>
-                    context.read<ActionsCubit>().toggleActionsState("more"),
-              )
+              PopupMenuButton(
+                icon: Icon(Icons.language),
+                onSelected: (String result) {
+                  _selectedOption = result;
+                },
+                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                  const PopupMenuItem<String>(
+                    value: 'eng',
+                    child: Text("English"),
+                  ),
+                  const PopupMenuItem<String>(
+                    value: 'kor',
+                    child: Text('한글'),
+                  ),
+                ],
+              ),
             ],
           ),
           body: Home(),
