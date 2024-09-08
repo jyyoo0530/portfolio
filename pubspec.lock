@@ -501,6 +501,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  web_smooth_scroll:
+    dependency: "direct main"
+    description:
+      name: web_smooth_scroll
+      sha256: "2a4adc22e42e4045f02ecc1598885bf46adbe7ed9b05aab0a0f5df9ed071e9b6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  word_cloud:
+    dependency: "direct main"
+    description:
+      name: word_cloud
+      sha256: ca3d6767562baebf221008ed002917f4d0bc451b485fdb30800be6b30e99ae0f
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   xdg_directories:
     dependency: transitive
     description:

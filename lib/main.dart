@@ -1,6 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/component/alert_contents_component.dart';
+import 'package:portfolio/constants.dart';
+import 'package:portfolio/cubit/settings_cubit.dart';
 import 'package:portfolio/theme.dart';
 import 'package:portfolio/util.dart';
 import 'dart:html' as html;
@@ -17,9 +21,8 @@ void main() {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => ActionsCubit(),
-        ),
+        BlocProvider(create: (context) => ActionsCubit()),
+        BlocProvider(create: (context) => SettingsCubit())
       ],
       child: MyPortfolioWeb(),
     ),
@@ -27,8 +30,6 @@ void main() {
 }
 
 class MyPortfolioWeb extends StatelessWidget {
-  String _selectedOption = "None";
-
   MyPortfolioWeb({super.key});
 
   Icon _getAlertDialogIcon(String key) {
@@ -75,62 +76,94 @@ class MyPortfolioWeb extends StatelessWidget {
     TextTheme textTheme = createTextTheme(context, "Noto Sans", "Noto Sans");
     MaterialTheme theme = MaterialTheme(textTheme);
 
-    return MaterialApp(
-      title: "Jeremy0530's awesome works",
-      debugShowCheckedModeBanner: false,
-      theme: brightness == Brightness.light ? theme.light() : theme.dark(),
-      home: BlocListener<ActionsCubit, ActionsState>(
-        listener: (context, state) {
-          state.actions.forEach((key, value) {
-            if (value) {
-              _showAlertDialog(context, key);
-            }
-          });
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(Icons.menu),
-              onPressed: () {},
-            ),
-            title: Text("Jeremy0530's Profile"),
-            actions: [
-              IconButton(
-                icon: Icon(Icons.mail_outline),
-                onPressed: () =>
-                    context.read<ActionsCubit>().toggleActionsState("mail"),
-              ),
-              IconButton(
-                icon: Icon(Icons.phone),
-                onPressed: () =>
-                    context.read<ActionsCubit>().toggleActionsState("phone"),
-              ),
-              IconButton(
-                icon: Icon(Icons.person_outline),
-                onPressed: () =>
-                    context.read<ActionsCubit>().toggleActionsState("sns"),
-              ),
-              PopupMenuButton(
-                icon: Icon(Icons.language),
-                onSelected: (String result) {
-                  _selectedOption = result;
-                },
-                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                  const PopupMenuItem<String>(
-                    value: 'eng',
-                    child: Text("English"),
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (BuildContext context, SettingsState settingsState) {
+        return MaterialApp(
+          scrollBehavior: CustomScrollBehavior(),
+          title: langSet[LangComponent.title]![settingsState.lang]!,
+          debugShowCheckedModeBanner: false,
+          theme: brightness == Brightness.light ? theme.light() : theme.dark(),
+          home: BlocListener<ActionsCubit, ActionsState>(
+            listener: (context, state) {
+              state.actions.forEach((key, value) {
+                if (value) {
+                  _showAlertDialog(context, key);
+                }
+              });
+            },
+            child: Scaffold(
+              appBar: AppBar(
+                leading: Builder(
+                  builder: (context) {
+                    return IconButton(
+                      icon: Icon(Icons.menu),
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                    );
+                  },
+                ),
+                title: Text(langSet[LangComponent.appBarHeader]![settingsState.lang]!),
+                actions: [
+                  IconButton(
+                    icon: Icon(Icons.mail_outline),
+                    onPressed: () =>
+                        context.read<ActionsCubit>().toggleActionsState("mail"),
                   ),
-                  const PopupMenuItem<String>(
-                    value: 'kor',
-                    child: Text('한글'),
+                  IconButton(
+                    icon: Icon(Icons.phone),
+                    onPressed: () => context
+                        .read<ActionsCubit>()
+                        .toggleActionsState("phone"),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.person_outline),
+                    onPressed: () =>
+                        context.read<ActionsCubit>().toggleActionsState("sns"),
+                  ),
+                  PopupMenuButton(
+                    icon: Icon(Icons.language),
+                    onSelected: (Language lang) {
+                      context.read<SettingsCubit>().updateState(lang);
+                    },
+                    itemBuilder: (BuildContext context) => Language.values
+                        .map(
+                          (lang) => PopupMenuItem(
+                            value: lang,
+                            child: Text(lang.displayName),
+                          ),
+                        )
+                        .toList(),
                   ),
                 ],
               ),
-            ],
+              drawer: Drawer(
+                child: Container(
+                  width: 300,
+                  height: double.infinity,
+                  child: Column(
+                    children: [
+                      Text("Why"),
+                      Text("Everything"),
+                      Text("Has"),
+                      Text("Its Purpose"),
+                    ],
+                  ),
+                ),
+              ),
+              body: Home(),
+            ),
           ),
-          body: Home(),
-        ),
-      ),
+        );
+      },
     );
   }
+}
+
+class CustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }
