@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class WebHomeSection1 extends StatelessWidget {
   WebHomeSection1({super.key});
@@ -10,6 +11,7 @@ class WebHomeSection1 extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
+        SizedBox(width:5),
         Flexible(
           flex: 1,
           child: ConstrainedBox(
@@ -19,8 +21,11 @@ class WebHomeSection1 extends StatelessWidget {
             child: Container(
               height: 550,
               child: Card.filled(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  padding: EdgeInsets.symmetric(horizontal: 45),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -41,8 +46,8 @@ class WebHomeSection1 extends StatelessWidget {
                         width: double.infinity,
                         alignment: Alignment.centerLeft,
                         child: Container(
-                          height: 80,
-                          width: 200,
+                          height: 75,
+                          width: 220,
                           child: FilledButton(
                             onPressed: () {},
                             child: Text("Get Started",
@@ -67,11 +72,15 @@ class WebHomeSection1 extends StatelessWidget {
               height: 550,
               width: double.infinity,
               child: Card.filled(
-                child: Text("Asdfasdfads"),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                child: LottieBuilder.asset("lottie_1.json"),
               ),
             ),
           ),
         ),
+        SizedBox(width:5),
       ],
     );
   }
