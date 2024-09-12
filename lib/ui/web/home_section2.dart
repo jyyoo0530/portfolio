@@ -20,19 +20,32 @@ class WebHomeSection2 extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          SingleChildScrollView(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                StackedTextButton(),
-                SizedBox(width: 10),
-                StackedTextButton(),
-                SizedBox(width: 10),
-                StackedTextButton(),
-              ],
-            ),
-            scrollDirection: Axis.horizontal,
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  StackedTextButton(),
+                  SizedBox(width: 10),
+                  StackedTextButton(),
+                  SizedBox(width: 10),
+                  StackedTextButton(),
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  StackedTextButton(),
+                  SizedBox(width: 10),
+                  StackedTextButton(),
+                  SizedBox(width: 10),
+                  StackedTextButton(),
+                ],
+              ),
+            ],
           ),
         ],
       ),

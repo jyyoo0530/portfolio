@@ -2,64 +2,97 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class StackedTextButton extends StatelessWidget {
+class StackedTextButton extends StatefulWidget {
   final double width;
+  final double height;
+  final double ratio;
+  final int animationDuration;
+  final double animationDensity;
 
-  const StackedTextButton({super.key, this.width = 390});
+  const StackedTextButton({
+    super.key,
+    this.width = 390,
+    this.height = 370,
+    this.ratio = 0.4,
+    this.animationDuration = 300,
+    this.animationDensity = 0.6,
+  });
+
+  @override
+  _StackedTextButtonState createState() => _StackedTextButtonState();
+}
+
+class _StackedTextButtonState extends State<StackedTextButton> {
+  double _borderRadius = 30.0;
+  Color _borderColor = Colors.transparent;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: width,
-          height: 370,
-          child: TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              backgroundColor:
-                  Theme.of(context).colorScheme.surfaceContainerHigh,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  width: double.infinity,
-                  child: Text(
-                    "Material Design at Google I/O",
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  width: double.infinity,
-                  child: Text(
-                    "See the full list of Material talks and tutorials launchingat I/O 2024",
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                ),
-                SizedBox(height: 40),
-              ],
-            ),
+    Color backgroundColor = Theme.of(context).colorScheme.surfaceContainerHigh;
+
+    return InkWell(
+      customBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(60.0),
+      ),
+      onHover: (isHovering) {
+        if (mounted) {
+          setState(
+            () {
+              backgroundColor = isHovering
+                  ? Theme.of(context).colorScheme.surfaceContainerHighest
+                  : Theme.of(context).colorScheme.surfaceContainerHigh;
+            },
+          );
+        }
+      },
+      onTap: () {
+        if (mounted) {
+          setState(() {
+            _borderColor = _borderColor == Colors.transparent
+                ? Theme.of(context).colorScheme.outline
+                : Colors.transparent;
+            _borderRadius = _borderRadius == 30.0 ? 60.0 : 30.0;
+          });
+        }
+        // _backgroundColor = Colors.red;
+      },
+      child: AnimatedContainer(
+        width: widget.width,
+        height: widget.height,
+        curve: Curves.easeInOut,
+        duration: Duration(milliseconds: widget.animationDuration),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(_borderRadius),
+          border: Border.all(
+            width: 3,
+            color: _borderColor,
           ),
+          // border: BorderColor
         ),
-        Container(
-          width: width,
-          height: 220,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(30.0),
-            child: LottieBuilder.asset("lottie_2.json", fit: BoxFit.fill),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
+
+// ,AnimatedContainer(
+// padding: EdgeInsets.zero,
+// width: widget.width,
+// height: widget.height,
+// duration: Duration(milliseconds: widget.animationDuration),
+// curve: Curves.easeInOut,
+// decoration: BoxDecoration(
+// border: Border.all(width: 2.0, color: _borderColor),
+// borderRadius: BorderRadius.circular(_borderRadius),
+// color: Theme.of(context).colorScheme.surfaceContainerHigh,
+// ),
+// child: Column(
+// children: [
+// ClipRRect(
+// borderRadius: BorderRadius.circular(_borderRadius),
+// child: LottieBuilder.asset("lottie_2.json",
+// fit: BoxFit.fill),
+// ),
+// ],
+// ),
+// );

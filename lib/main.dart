@@ -1,21 +1,25 @@
 import 'dart:ui';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/constants.dart';
 import 'package:portfolio/cubit/navigation_cubit.dart';
 import 'package:portfolio/cubit/settings_cubit.dart';
+import 'package:portfolio/firebase_options.dart';
 import 'package:portfolio/theme.dart';
 import 'package:portfolio/ui/web/main.dart';
 import 'package:portfolio/util.dart';
 import 'dart:html' as html;
 
-void main() {
+void main() async {
   final baseHref = html.window.location.pathname;
   final baseElement = html.Element.tag('base');
   baseElement.attributes['href'] = baseHref!;
   html.document.head!.append(baseElement);
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.web);
 
   runApp(
     MultiBlocProvider(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/ui/web/home_section1.dart';
 import 'package:portfolio/ui/web/home_section2.dart';
+import 'package:portfolio/ui/web/home_section3.dart';
 
 class WebHome extends StatelessWidget {
   const WebHome({super.key});
@@ -17,6 +18,8 @@ class WebHome extends StatelessWidget {
             WebHomeSection1(),
             SizedBox(height: 100),
             WebHomeSection2(),
+            SizedBox(height: 100),
+            WebHomeSection3(),
           ],
         ),
       ),

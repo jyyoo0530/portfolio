@@ -11,35 +11,80 @@ class WebMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationCubit, int>(builder: (context, selectedIndex) {
       return Scaffold(
-        body: Row(
+        body: Stack(
           children: [
-            NavigationRail(
-              backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-              selectedIndex: selectedIndex,
-              onDestinationSelected: (int index) {
-                context.read<NavigationCubit>().updateIndex(index);
-              },
-              labelType: NavigationRailLabelType.selected,
-              destinations: <NavigationRailDestination>[
-                NavigationRailDestination(
-                  icon: Icon(Icons.home_outlined),
-                  label: Text('Home'),
-                  selectedIcon: Icon(Icons.home),
+            Row(
+              children: [
+                NavigationRail(
+                  leading: Container(
+                    width: 40,
+                    height: 60,
+                    padding: EdgeInsets.only(top: 10, bottom: 20, left: 5, right: 5),
+                    child: ClipRRect(
+                      child: Image.asset("favicon.png", fit: BoxFit.fill),
+                    ),
+                  ),
+                  minWidth: 90,
+                  groupAlignment: -1,
+                  backgroundColor:
+                      Theme.of(context).colorScheme.surfaceContainer,
+                  selectedIndex: selectedIndex,
+                  onDestinationSelected: (int index) {
+                    context.read<NavigationCubit>().updateIndex(index);
+                  },
+                  labelType: NavigationRailLabelType.all,
+                  destinations: <NavigationRailDestination>[
+                    NavigationRailDestination(
+                      icon: Icon(Icons.home_outlined),
+                      label: Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text('Home'),
+                      ),
+                      selectedIcon: Icon(Icons.home),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.account_tree_outlined),
+                      label:  Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text('Projects'),
+                      ),
+                      selectedIcon: Icon(Icons.account_tree),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.build_outlined),
+                      label:  Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text('Skills'),
+                      ),
+                      selectedIcon: Icon(Icons.build),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.work_outline),
+                      label:  Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text('Career'),
+                      ),
+                      selectedIcon: Icon(Icons.work),
+                    ),
+                  ],
                 ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.settings_outlined),
-                  label: Text('Settings'),
-                  selectedIcon: Icon(Icons.settings),
+                Expanded(
+                  child: BlocBuilder<NavigationCubit, int>(
+                    builder: (context, selectedIndex) {
+                      return _getPage(selectedIndex);
+                    },
+                  ),
                 ),
               ],
             ),
-            Expanded(
-              child:BlocBuilder<NavigationCubit, int>(
-                builder: (context, selectedIndex) {
-                  return _getPage(selectedIndex);
-                },
+            Positioned(
+              bottom: 20,
+              left: 20,
+              child: IconButton(
+                icon: Icon(Icons.settings_outlined, size: 30,),
+                onPressed: () {},
               ),
-            ),
+            )
           ],
         ),
       );
@@ -51,7 +96,11 @@ class WebMain extends StatelessWidget {
       case 0:
         return WebHome();
       case 1:
-        return Text('Settings Page');
+        return Text('Projects Page');
+      case 2:
+        return Text('Skills');
+      case 3:
+        return Text('Careers');
       default:
         return Text('Unknown Page');
     }
