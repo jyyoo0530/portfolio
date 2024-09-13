@@ -73990,7 +73990,7 @@ A.a6H.prototype={
 O(a){var s,r=null,q=A.dg(r,r,5),p=A.Oy(30),o=t.E
 p=A.er(r,A.aH5(A.er(r,A.KE(A.e([A.Hr("Material Design",A.LB(r,r,r,r,r,r,r,r,r,r,r,100,r,r,B.cg,r,1,!0,r,r,r,r,r,r,r,r)),A.dg(r,25,r),A.Hr("Material 3 is the latest version of Google's open-source design system. Design and build beautiful, usable products with Material 3.",A.aP(a).p2.r),A.dg(r,20,r),A.er(B.iN,A.er(r,new A.a1v(new A.avp(),r,r,r,r,B.R,r,!1,r,A.Hr("Get Started",A.LB(r,r,r,r,r,r,r,r,r,r,r,23,r,r,r,r,r,!0,r,r,r,r,r,r,r,r)),r),B.R,r,r,r,75,r,r,r,r,220),B.R,r,r,r,r,r,r,r,r,1/0)],o),B.cm,B.b8),B.R,r,r,r,r,r,new A.bp(45,0,45,0),r,r,r),new A.cF(p,B.I)),B.R,r,r,r,550,r,r,r,r,r)
 s=A.Oy(30)
-return A.a4X(A.e([q,new A.Mw(1,B.h7,new A.Ix(new A.aK(0,900,0,1/0),p,r),r),new A.Mw(1,B.h7,new A.Ix(new A.aK(0,900,0,1/0),A.er(r,A.aH5(new A.Ua(new A.a_v("lottie_1.json",r,r,r,r,!1),r),new A.cF(s,B.I)),B.R,r,r,r,550,r,r,r,r,1/0),r),r),A.dg(r,r,5)],o),B.cm,B.bQ)}}
+return A.a4X(A.e([q,new A.Mw(1,B.h7,new A.Ix(new A.aK(0,900,0,1/0),p,r),r),new A.Mw(1,B.h7,new A.Ix(new A.aK(0,900,0,1/0),A.er(r,A.aH5(new A.Ua(new A.a_v("assets/lottie/lottie_1.json",r,r,r,r,!1),r),new A.cF(s,B.I)),B.R,r,r,r,550,r,r,r,r,1/0),r),r),A.dg(r,r,5)],o),B.cm,B.bQ)}}
 A.avp.prototype={
 $0(){},
 $S:1}
@@ -74009,7 +74009,7 @@ case 2:return A.Hr("Skills",s)
 case 3:return A.Hr("Careers",s)
 default:return A.Hr("Unknown Page",s)}}}
 A.avt.prototype={
-$2(a,b){var s=null,r=A.er(s,new A.a0i(new A.Ty(A.bki(s,s,new A.Ou("favicon.png",s,s)),B.wM,s),s),B.R,s,s,s,60,s,new A.bp(5,10,5,20),s,s,40),q=A.aP(a).ax,p=q.p4
+$2(a,b){var s=null,r=A.er(s,new A.a0i(new A.Ty(A.bki(s,s,new A.Ou("assets/image/favicon.png",s,s)),B.wM,s),s),B.R,s,s,s,60,s,new A.bp(5,10,5,20),s,s,40),q=A.aP(a).ax,p=q.p4
 q=p==null?q.k2:p
 p=t.E
 return new A.Nx(A.Qa(B.cN,A.e([A.a4X(A.e([new A.Uz(q,r,A.e([A.apW(A.KU(B.Ai,s),new A.eF(new A.bp(0,0,0,10),A.Hr("Home",s),s),A.KU(B.Ad,s)),A.apW(A.KU(B.Ag,s),new A.eF(new A.bp(0,0,0,10),A.Hr("Projects",s),s),A.KU(B.Ab,s)),A.apW(A.KU(B.Ah,s),new A.eF(new A.bp(0,0,0,10),A.Hr("Skills",s),s),A.KU(B.Ac,s)),A.apW(A.KU(B.Af,s),new A.eF(new A.bp(0,0,0,10),A.Hr("Career",s),s),A.KU(B.Ae,s))],t.P2),b,new A.avq(a),-1,B.EM,90,s),A.aI2(A.aDd(new A.avr(this.a),t.XW,t.S))],p),B.aF,B.b8),A.aEt(20,new A.a28(A.KU(B.Aj,30),new A.avs(),s),s,s,20,s,s,s)],p),B.cB),s)},
