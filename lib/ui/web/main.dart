@@ -21,7 +21,7 @@ class WebMain extends StatelessWidget {
                     height: 60,
                     padding: EdgeInsets.only(top: 10, bottom: 20, left: 5, right: 5),
                     child: ClipRRect(
-                      child: Image.asset("favicon.png", fit: BoxFit.fill),
+                      child: Image.asset("assets/image/favicon.png", fit: BoxFit.fill),
                     ),
                   ),
                   minWidth: 90,

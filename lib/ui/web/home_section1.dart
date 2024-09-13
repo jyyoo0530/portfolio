@@ -75,7 +75,7 @@ class WebHomeSection1 extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
-                child: LottieBuilder.asset("lottie_1.json"),
+                child: LottieBuilder.asset("assets/lottie/lottie_1.json"),
               ),
             ),
           ),
