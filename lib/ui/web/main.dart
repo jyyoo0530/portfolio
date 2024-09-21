@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/cubit/navigation_cubit.dart';
 import 'package:portfolio/cubit/settings_cubit.dart';
+import 'package:portfolio/firebase_analytics_helper.dart';
 import 'package:portfolio/ui/web/career.dart';
 import 'package:portfolio/ui/web/component/carousel.dart';
 import 'package:portfolio/ui/web/home.dart';
@@ -40,7 +41,13 @@ class WebMain extends StatelessWidget {
                   selectedIndex: selectedIndex,
                   onDestinationSelected: (int index) {
                     context.read<NavigationCubit>().updateIndex(index);
-                    _logNavigationEvent(index);
+                    FirebaseAnalyticsService().logEvent(
+                      'navigation_selected',
+                      {
+                        'page': _getPageName(index),
+                        'index': index,
+                      },
+                    );
                   },
                   labelType: NavigationRailLabelType.all,
                   destinations: <NavigationRailDestination>[
@@ -119,23 +126,18 @@ class WebMain extends StatelessWidget {
     }
   }
 
-  Future<void> _logNavigationEvent(int index) async {
-    String pageName;
+  String _getPageName(int index) {
     switch (index) {
       case 0:
-        pageName = 'Home';
-        break;
+        return 'Home';
       case 1:
-        pageName = 'Projects';
-        break;
+        return 'Projects';
       case 2:
-        pageName = 'Skills';
-        break;
+        return 'Skills';
       case 3:
-        pageName = 'Career';
-        break;
+        return 'Career';
       default:
-        pageName = 'Unkown';
+        return 'Unkown';
     }
   }
 }
