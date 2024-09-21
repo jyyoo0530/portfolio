@@ -1,11 +1,18 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/cubit/navigation_cubit.dart';
+import 'package:portfolio/cubit/settings_cubit.dart';
+import 'package:portfolio/ui/web/career.dart';
 import 'package:portfolio/ui/web/component/carousel.dart';
 import 'package:portfolio/ui/web/home.dart';
+import 'package:portfolio/ui/web/projects.dart';
+import 'package:portfolio/ui/web/skills.dart';
 
 class WebMain extends StatelessWidget {
-  const WebMain({super.key});
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
+  WebMain({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +26,11 @@ class WebMain extends StatelessWidget {
                   leading: Container(
                     width: 40,
                     height: 60,
-                    padding: EdgeInsets.only(top: 10, bottom: 20, left: 5, right: 5),
+                    padding:
+                        EdgeInsets.only(top: 10, bottom: 20, left: 5, right: 5),
                     child: ClipRRect(
-                      child: Image.asset("assets/image/favicon.png", fit: BoxFit.fill),
+                      child: Image.asset("assets/image/favicon.png",
+                          fit: BoxFit.fill),
                     ),
                   ),
                   minWidth: 90,
@@ -31,6 +40,7 @@ class WebMain extends StatelessWidget {
                   selectedIndex: selectedIndex,
                   onDestinationSelected: (int index) {
                     context.read<NavigationCubit>().updateIndex(index);
+                    _logNavigationEvent(index);
                   },
                   labelType: NavigationRailLabelType.all,
                   destinations: <NavigationRailDestination>[
@@ -44,7 +54,7 @@ class WebMain extends StatelessWidget {
                     ),
                     NavigationRailDestination(
                       icon: Icon(Icons.account_tree_outlined),
-                      label:  Padding(
+                      label: Padding(
                         padding: EdgeInsets.only(bottom: 10),
                         child: Text('Projects'),
                       ),
@@ -52,7 +62,7 @@ class WebMain extends StatelessWidget {
                     ),
                     NavigationRailDestination(
                       icon: Icon(Icons.build_outlined),
-                      label:  Padding(
+                      label: Padding(
                         padding: EdgeInsets.only(bottom: 10),
                         child: Text('Skills'),
                       ),
@@ -60,7 +70,7 @@ class WebMain extends StatelessWidget {
                     ),
                     NavigationRailDestination(
                       icon: Icon(Icons.work_outline),
-                      label:  Padding(
+                      label: Padding(
                         padding: EdgeInsets.only(bottom: 10),
                         child: Text('Career'),
                       ),
@@ -81,7 +91,10 @@ class WebMain extends StatelessWidget {
               bottom: 20,
               left: 20,
               child: IconButton(
-                icon: Icon(Icons.settings_outlined, size: 30,),
+                icon: Icon(
+                  Icons.settings_outlined,
+                  size: 30,
+                ),
                 onPressed: () {},
               ),
             )
@@ -96,13 +109,33 @@ class WebMain extends StatelessWidget {
       case 0:
         return WebHome();
       case 1:
-        return Text('Projects Page');
+        return WebProjects();
       case 2:
-        return Text('Skills');
+        return WebSkills();
       case 3:
-        return Text('Careers');
+        return WebCareer();
       default:
         return Text('Unknown Page');
+    }
+  }
+
+  Future<void> _logNavigationEvent(int index) async {
+    String pageName;
+    switch (index) {
+      case 0:
+        pageName = 'Home';
+        break;
+      case 1:
+        pageName = 'Projects';
+        break;
+      case 2:
+        pageName = 'Skills';
+        break;
+      case 3:
+        pageName = 'Career';
+        break;
+      default:
+        pageName = 'Unkown';
     }
   }
 }

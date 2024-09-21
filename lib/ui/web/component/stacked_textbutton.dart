@@ -75,24 +75,98 @@ class _StackedTextButtonState extends State<StackedTextButton> {
   }
 }
 
-// ,AnimatedContainer(
-// padding: EdgeInsets.zero,
-// width: widget.width,
-// height: widget.height,
-// duration: Duration(milliseconds: widget.animationDuration),
-// curve: Curves.easeInOut,
-// decoration: BoxDecoration(
-// border: Border.all(width: 2.0, color: _borderColor),
-// borderRadius: BorderRadius.circular(_borderRadius),
-// color: Theme.of(context).colorScheme.surfaceContainerHigh,
-// ),
-// child: Column(
-// children: [
-// ClipRRect(
-// borderRadius: BorderRadius.circular(_borderRadius),
-// child: LottieBuilder.asset("lottie_2.json",
-// fit: BoxFit.fill),
-// ),
-// ],
-// ),
-// );
+class StackedTextButtonTextOnly extends StatefulWidget {
+  final double width;
+  final double height;
+  final double ratio;
+  final String titleText = "Put Your Title";
+  final String bodyText = "Put your body text as variable";
+  final int animationDuration;
+  final double animationDensity;
+
+  const StackedTextButtonTextOnly({
+    super.key,
+    this.width = 390,
+    this.height = 370,
+    this.ratio = 0.4,
+    this.animationDuration = 300,
+    this.animationDensity = 0.6,
+  });
+
+  @override
+  _StackedTextButtonTextOnlyState createState() =>
+      _StackedTextButtonTextOnlyState();
+}
+
+class _StackedTextButtonTextOnlyState extends State<StackedTextButtonTextOnly> {
+  double _borderRadius = 20.0;
+  Color _borderColor = Colors.transparent;
+
+  @override
+  Widget build(BuildContext context) {
+    Color backgroundColor = Theme.of(context).colorScheme.surfaceContainerHigh;
+
+    return InkWell(
+      customBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(40.0),
+      ),
+      onHover: (isHovering) {
+        if (mounted) {
+          setState(
+            () {
+              backgroundColor = isHovering
+                  ? Theme.of(context).colorScheme.surfaceContainerHighest
+                  : Theme.of(context).colorScheme.surfaceContainerHigh;
+            },
+          );
+        }
+      },
+      onTap: () {
+        if (mounted) {
+          setState(() {
+            _borderColor = _borderColor == Colors.transparent
+                ? Theme.of(context).colorScheme.outline
+                : Colors.transparent;
+            _borderRadius = _borderRadius == 20.0 ? 40.0 : 20.0;
+          });
+        }
+        // _backgroundColor = Colors.red;
+      },
+      child: AnimatedContainer(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        width: widget.width,
+        height: widget.height,
+        curve: Curves.easeInOut,
+        duration: Duration(milliseconds: widget.animationDuration),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(_borderRadius),
+          border: Border.all(
+            width: 3,
+            color: _borderColor,
+          ),
+          // border: BorderColor
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text('${widget.titleText}',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                ),),
+            ),
+            SizedBox(height: 10),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text('${widget.bodyText}'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
