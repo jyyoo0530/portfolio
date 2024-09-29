@@ -14,6 +14,8 @@ import 'package:portfolio/ui/web/main.dart';
 import 'package:portfolio/util.dart';
 import 'dart:html' as html;
 
+import 'package:portfolio/web_sizeconfig.dart';
+
 void main() async {
   final baseHref = html.window.location.pathname;
   final baseElement = html.Element.tag('base');
@@ -40,8 +42,10 @@ class MyPortfolioWeb extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    WebSizeConfig.init(context);
+
     final brightness = View.of(context).platformDispatcher.platformBrightness;
-    TextTheme textTheme = createTextTheme(context, "Noto Sans", "Noto Sans");
+    TextTheme textTheme = createTextTheme(context, "Nanum Gothic", "Nanum Gothic");
     MaterialTheme theme = MaterialTheme(textTheme);
 
     return BlocBuilder<SettingsCubit, SettingsState>(

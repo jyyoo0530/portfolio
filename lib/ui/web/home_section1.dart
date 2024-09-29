@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:portfolio/constants.dart';
+import 'package:portfolio/web_sizeconfig.dart';
+import 'web_strings.dart';
 
 class WebHomeSection1 extends StatelessWidget {
   WebHomeSection1({super.key});
@@ -11,12 +14,12 @@ class WebHomeSection1 extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(width:5),
+        SizedBox(width: 5),
         Flexible(
           flex: 1,
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxWidth: 900,
+              maxWidth: WebSizeConfig.setContainerWidth(50),
             ),
             child: Container(
               height: 550,
@@ -29,29 +32,44 @@ class WebHomeSection1 extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Material Design",
-                        style: TextStyle(
-                          fontSize: 100,
-                          fontWeight: FontWeight.w600,
-                          height: 1.0,
+                      Container(
+                        width: double.infinity,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          webLangSet["home_section1_head"]![Language.eng]!,
+                          style: TextStyle(
+                            fontSize: WebSizeConfig.setFontSize(6),
+                            fontWeight: FontWeight.bold,
+                            height: 1.0,
+                          ),
                         ),
                       ),
                       SizedBox(height: 25),
-                      Text(
-                          "Material 3 is the latest version of Google's open-source design system. Design and build beautiful, usable products with Material 3.",
-                          style: Theme.of(context).textTheme.titleLarge),
+                      Container(
+                        width: double.infinity,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          webLangSet["home_section1_body"]![Language.eng]!,
+                          style: TextStyle(
+                            fontSize: WebSizeConfig.setFontSize(1.3),
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
                       SizedBox(height: 20),
                       Container(
                         width: double.infinity,
                         alignment: Alignment.centerLeft,
                         child: Container(
-                          height: 75,
-                          width: 220,
+                          height: WebSizeConfig.setContainerHeight(8),
+                          width: WebSizeConfig.setContainerWidth(12),
                           child: FilledButton(
                             onPressed: () {},
-                            child: Text("Get Started",
-                                style: TextStyle(fontSize: 23)),
+                            child: Text(
+                                webLangSet["home_section1_button"]![
+                                    Language.eng]!,
+                                style: TextStyle(
+                                    fontSize: WebSizeConfig.setFontSize(1.1))),
                           ),
                         ),
                       ),
@@ -80,7 +98,7 @@ class WebHomeSection1 extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(width:5),
+        SizedBox(width: 5),
       ],
     );
   }

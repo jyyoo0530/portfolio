@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:portfolio/constants.dart';
 import 'package:portfolio/ui/web/component/stacked_textbutton.dart';
+import 'package:portfolio/ui/web/web_strings.dart';
 
 class WebSkillsSection1 extends StatelessWidget {
   const WebSkillsSection1({super.key});
@@ -29,7 +31,7 @@ class WebSkillsSection1 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Get Started",
+              webLangSet["skills_section1_head"]![Language.eng]!,
               style: TextStyle(
                 fontSize: 100,
                 fontWeight: FontWeight.w600,
@@ -38,7 +40,7 @@ class WebSkillsSection1 extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              "Get to know Material 3 - from UX guidance and tools to reusable\ncomponents and open-source code",
+              webLangSet["skills_section1_body"]![Language.eng]!,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),

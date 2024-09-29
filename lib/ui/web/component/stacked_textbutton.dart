@@ -8,6 +8,8 @@ class StackedTextButton extends StatefulWidget {
   final double ratio;
   final int animationDuration;
   final double animationDensity;
+  final Widget? child;
+  final DecorationImage? backgroundImage;
 
   const StackedTextButton({
     super.key,
@@ -16,6 +18,8 @@ class StackedTextButton extends StatefulWidget {
     this.ratio = 0.4,
     this.animationDuration = 300,
     this.animationDensity = 0.6,
+    this.child,
+    this.backgroundImage,
   });
 
   @override
@@ -62,6 +66,7 @@ class _StackedTextButtonState extends State<StackedTextButton> {
         curve: Curves.easeInOut,
         duration: Duration(milliseconds: widget.animationDuration),
         decoration: BoxDecoration(
+          image: widget.backgroundImage,
           color: backgroundColor,
           borderRadius: BorderRadius.circular(_borderRadius),
           border: Border.all(
@@ -70,6 +75,7 @@ class _StackedTextButtonState extends State<StackedTextButton> {
           ),
           // border: BorderColor
         ),
+        child: widget.child,
       ),
     );
   }
@@ -153,11 +159,13 @@ class _StackedTextButtonTextOnlyState extends State<StackedTextButtonTextOnly> {
           children: [
             Container(
               alignment: Alignment.centerLeft,
-              child: Text('${widget.titleText}',
+              child: Text(
+                '${widget.titleText}',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 20,
-                ),),
+                ),
+              ),
             ),
             SizedBox(height: 10),
             Container(

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:portfolio/constants.dart';
+import 'package:portfolio/ui/web/web_strings.dart';
 
 class WebProjectsSection1 extends StatelessWidget {
   const WebProjectsSection1({super.key});
@@ -31,23 +33,25 @@ class WebProjectsSection1 extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.centerLeft,
-                          width: double.infinity,
-                          child: Text(
-                            "Projects",
-                            style: TextStyle(
-                              fontSize: 100,
-                              fontWeight: FontWeight.w600,
-                              height: 1.0,
-                            ),
+                        width: double.infinity,
+                        child: Text(
+                          webLangSet["projects_section1_head"]![Language.eng]!,
+                          style: TextStyle(
+                            fontSize: 100,
+                            fontWeight: FontWeight.w600,
+                            height: 1.0,
                           ),
+                        ),
                       ),
                       SizedBox(height: 25),
-                      Text(
-                          "Material 3 is the latest version of Google's open-source design system. Design and build beautiful, usable products with Material 3.",
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .titleLarge),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        width: double.infinity,
+                        child: Text(
+                          webLangSet["projects_section1_body"]![Language.eng]!,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ),
                     ],
                   ),
                 ),
