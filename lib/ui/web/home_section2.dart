@@ -9,6 +9,7 @@ class WebHomeSection2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String basePath = const bool.fromEnvironment('dart.vm.product') ? "assets/" : "";
     return Container(
       width: 1200,
       alignment: Alignment.centerLeft,
@@ -30,7 +31,8 @@ class WebHomeSection2 extends StatelessWidget {
                 children: [
                   StackedTextButton(
                     backgroundImage: DecorationImage(
-                      image: AssetImage("image/home_project_freight9.png"),
+                      image: AssetImage(
+                          "${basePath}image/home_project_freight9.png"),
                       fit: BoxFit.none,
                       scale: 1.6,
                     ),
@@ -38,7 +40,8 @@ class WebHomeSection2 extends StatelessWidget {
                   SizedBox(width: 10),
                   StackedTextButton(
                     backgroundImage: DecorationImage(
-                      image: AssetImage("image/home_project_smols.png"),
+                      image:
+                          AssetImage("${basePath}image/home_project_smols.png"),
                       fit: BoxFit.none,
                       scale: 1.3,
                       alignment: Alignment.center,
@@ -47,7 +50,8 @@ class WebHomeSection2 extends StatelessWidget {
                   SizedBox(width: 10),
                   StackedTextButton(
                     backgroundImage: DecorationImage(
-                      image: AssetImage("image/home_project_hannunae.png"),
+                      image: AssetImage(
+                          "${basePath}image/home_project_hannunae.png"),
                       fit: BoxFit.none,
                       scale: 1.4,
                       alignment: Alignment.center,
@@ -62,7 +66,8 @@ class WebHomeSection2 extends StatelessWidget {
                 children: [
                   StackedTextButton(
                     backgroundImage: DecorationImage(
-                        image: AssetImage("image/home_project_smolslab.png"),
+                        image: AssetImage(
+                            "${basePath}image/home_project_smolslab.png"),
                         fit: BoxFit.none,
                         scale: 1.0,
                         alignment: Alignment.center),
@@ -70,7 +75,8 @@ class WebHomeSection2 extends StatelessWidget {
                   SizedBox(width: 10),
                   StackedTextButton(
                     backgroundImage: DecorationImage(
-                        image: AssetImage("image/home_project_pandora.png"),
+                        image: AssetImage(
+                            "${basePath}image/home_project_pandora.png"),
                         fit: BoxFit.none,
                         scale: 1.5,
                         alignment: Alignment.center),
@@ -78,7 +84,8 @@ class WebHomeSection2 extends StatelessWidget {
                   SizedBox(width: 10),
                   StackedTextButton(
                     backgroundImage: DecorationImage(
-                        image: AssetImage("image/home_project_viple.png"),
+                        image: AssetImage(
+                            "${basePath}image/home_project_viple.png"),
                         fit: BoxFit.none,
                         scale: 1.3,
                         alignment: Alignment.center),
@@ -92,7 +99,8 @@ class WebHomeSection2 extends StatelessWidget {
                 children: [
                   StackedTextButton(
                     backgroundImage: DecorationImage(
-                        image: AssetImage("image/home_project_vit.png"),
+                        image:
+                            AssetImage("${basePath}image/home_project_vit.png"),
                         fit: BoxFit.none,
                         scale: 1.5,
                         alignment: Alignment.center),
@@ -100,7 +108,8 @@ class WebHomeSection2 extends StatelessWidget {
                   SizedBox(width: 10),
                   StackedTextButton(
                     backgroundImage: DecorationImage(
-                        image: AssetImage("image/home_project_playon.png"),
+                        image: AssetImage(
+                            "${basePath}image/home_project_playon.png"),
                         fit: BoxFit.none,
                         scale: 1.5,
                         alignment: Alignment.center),
